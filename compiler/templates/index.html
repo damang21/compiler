@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Universal Compiler</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google AdSense Auto Ads -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2147435939474549"
+     crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    select, textarea {
+      transition: all 0.2s ease;
+    }
+    select:focus, textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <div class="max-w-6xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-xl">
+    
+    <!-- Title -->
+    <h1 class="text-4xl font-bold text-center text-blue-700 mb-6">🌐 Universal Code Compiler</h1>
+
+    <!-- Form -->
+    <form method="POST" class="space-y-6">
+      <div>
+        <label for="language" class="block text-lg font-semibold mb-2">Choose Language:</label>
+        <select name="language" id="language" onchange="setDefaultCode()"
+          class="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg">
+          <option value="python3">Python 3</option>
+          <option value="cpp">C++</option>
+          <option value="c">C</option>
+          <option value="java">Java</option>
+          <option value="javascript">JavaScript</option>
+          <option value="go">Go</option>
+          <option value="php">PHP</option>
+          <option value="ruby">Ruby</option>
+          <option value="swift">Swift</option>
+          <option value="rust">Rust</option>
+          <option value="kotlin">Kotlin</option>
+          <option value="scala">Scala</option>
+          <option value="perl">Perl</option>
+          <option value="r">R</option>
+          <option value="haskell">Haskell</option>
+          <option value="bash">Bash</option>
+          <option value="sql">SQL</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="code" class="block text-lg font-semibold mb-2">Write your code:</label>
+        <textarea id="code" name="code" rows="12"
+          class="w-full font-mono text-green-200 bg-gray-900 p-4 rounded-lg resize-none"
+          placeholder="# Your code here..." required></textarea>
+      </div>
+
+      <div class="text-right">
+        <button type="submit"
+          class="bg-green-600 hover:bg-green-700 text-white text-lg px-6 py-2 rounded-lg shadow-md transition">
+          ▶ Run Code
+        </button>
+      </div>
+    </form>
+
+    <!-- Output Section -->
+    {% if output %}
+    <div class="mt-8">
+      <label class="block text-lg font-semibold mb-2">Output:</label>
+      <pre class="bg-black text-green-400 font-mono p-4 rounded-lg h-64 overflow-auto whitespace-pre-wrap">
+{{ output }}
+      </pre>
+    </div>
+    {% endif %}
+
+  </div>
+
+  <!-- Default Code Snippets Script -->
+  <script>
+    const defaultSnippets = {
+      python3: `print("Hello, World!")`,
+      cpp: `#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << "Hello, World!";\n    return 0;\n}`,
+      c: `#include <stdio.h>\n\nint main() {\n    printf("Hello, World!");\n    return 0;\n}`,
+      java: `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}`,
+      javascript: `console.log("Hello, World!");`,
+      go: `package main\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello, World!")\n}`,
+      php: `<?php\necho "Hello, World!";`,
+      ruby: `puts "Hello, World!"`,
+      swift: `import Foundation\nprint("Hello, World!")`,
+      rust: `fn main() {\n    println!("Hello, World!");\n}`,
+      kotlin: `fun main() {\n    println("Hello, World!")\n}`,
+      scala: `object HelloWorld {\n    def main(args: Array[String]) = println("Hello, World!")\n}`,
+      perl: `print "Hello, World!\\n";`,
+      r: `cat("Hello, World!\\n")`,
+      haskell: `main = putStrLn "Hello, World!"`,
+      bash: `echo "Hello, World!"`,
+      sql: `CREATE TABLE users (id INT, name VARCHAR(50));\nINSERT INTO users VALUES (1, 'Alice');\nSELECT * FROM users;`
+    };
+
+    function setDefaultCode() {
+      const lang = document.getElementById('language').value;
+      document.getElementById('code').value = defaultSnippets[lang] || "";
+    }
+
+    window.onload = setDefaultCode;
+  </script>
+
+</body>
+</html>
